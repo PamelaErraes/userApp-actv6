@@ -1,1 +1,28 @@
-<p>user-form works!</p>
+
+<div class="container mt-3">
+  <h1> {{isEditMode ? 'Actualizar': 'Nuevo Usuario'}}</h1>
+    <form [formGroup]="userForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="first_name">Nombre</label>
+          <input type="text" id="first_name"  formControlName="first_name" class="form-control" >
+        </div>
+        <div class="form-group">
+          <label for="last_name">Apellido</label>
+          <input type="text" id="last_name" formControlName="last_name" class="form-control" >
+        </div>
+        <div class="form-group">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" formControlName="username" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="image">Image URL</label>
+          <input type="text" id="image" formControlName="image" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary  mt-4">{{ isEditMode ? 'Actualizar Usuario' : 'Crear Usuario' }}</button>
+      </form>
+
+</div>

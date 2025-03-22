@@ -1,1 +1,53 @@
-<p>home works!</p>
+<div class="container p-4">
+
+  <div class="g-4 row row-cols-1 row-cols-md-4">
+    @for( usuario of arrUsuarios; track usuario._id){
+    <div class="col">
+      <div class="card h-100">
+        <img [src]="usuario.image" class="d-block card-img-top rounded-circle mt-3 mx-auto"
+          [alt]="usuario.first_name">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ usuario.first_name }} {{ usuario.last_name }} </h5>
+          <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+
+          <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+            <!-- Ver Detalle -->
+
+            <button [routerLink]="['/user', usuario._id]" routerLinkActive="router-link-active"
+              class="d-flex flex-column btn btn-light align-items-center p-2">
+              <i class="bi bi-search" style="font-size: 1.5rem;"></i>
+              <span style="font-size: 0.9rem;">Ver detalle</span>
+            </button>
+            <!-- Actualizar -->
+            <button [routerLink]="['/updateuser', usuario._id]" routerLinkActive="router-link-active"
+              class="d-flex flex-column btn btn-light align-items-center p-2">
+              <i class="bi bi-arrow-repeat" style="font-size: 1.5rem;"></i>
+              <span style="font-size: 0.9rem;">Actualizar</span>
+            </button>
+
+            <!-- Borrar -->
+            <button class="d-flex flex-column btn btn-light align-items-center p-2" (click)="deleteUser(usuario.id)">
+              <i class="bi bi-trash" style="font-size: 1.5rem;"></i>
+              <span style="font-size: 0.9rem;">Eliminar</span>
+            </button> 
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    }
+
+
+
+
+  </div>
+  <!-- Paginación -->
+  <nav class="mt-4">
+    <ul class="justify-content-center pagination">
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+    </ul>
+  </nav>

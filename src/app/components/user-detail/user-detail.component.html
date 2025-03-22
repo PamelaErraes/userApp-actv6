@@ -1,1 +1,34 @@
-<p>user-detail works!</p>
+<div class="container-lg mt-5">
+
+
+    <div class="row align-items-center justify-content-center">
+      <!-- Imagen de usuario -->
+      <div class="col-md-4 text-center">
+        <img
+          [src]="user?.image || 'https://via.placeholder.com/300'"
+          [alt]="user?.first_name"
+          class="border rounded-circle shadow-lg img-fluid"
+          style="width: 300px; height: 300px; object-fit: cover; background-color: #0066ff;"
+        />
+      </div>
+  
+      <!-- Información del usuario -->
+      <div class="col-md-7">
+        <div class="card border-0 p-5 shadow-lg">
+          <h1 class="text-center fw-bold">{{ user?.first_name }} {{ user?.last_name }}</h1>
+          <hr />
+  
+          <div class="py-3">
+            <p class="text-muted fs-4"><strong>👤 Nombre Usuario:</strong> {{ user?.username }}</p>
+            <p class="text-muted fs-4"><strong>📧 Email:</strong> {{ user?.email }}</p>
+          </div>
+  
+          <div class="d-flex justify-content-center gap-4 mt-4">
+            <button class="btn btn-danger btn-lg px-4 py-2 " (click)="deleteUser()">Eliminar</button>
+            <button class="btn btn-lg btn-primary px-4 py-2" [routerLink]="['/updateuser', user?._id]" routerLinkActive="router-link-active" > Actualizar</button>
+            <a [routerLink]="['/home']" routerLinkActive="router-link-active" class="btn btn-lg btn-outline-dark px-4 py-2"> Volver</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
