@@ -12,9 +12,11 @@ export class UserService {
   private httpClient = inject(HttpClient);
 
   //obtener todos los usuarios
-  getAll(): Observable<IResponse> {
-    return this.httpClient.get<IResponse>(this.baseUrl);
+  getUsers(page: number = 1): Observable<IResponse> {
+    return this.httpClient.get<IResponse>(`${this.baseUrl}?page=${page}`);
   }
+
+  
 
   // getAllPromise(): Promise<IResponse> {
   //   return lastValueFrom(this.httpClient.get<IResponse>(this.baseUrl));
@@ -24,6 +26,7 @@ export class UserService {
   getUserById(_id: string): Observable<IUser> {
     return this.httpClient.get<IUser>(`${this.baseUrl}/${_id}`);
   }
+  
 
   // Método para crear un nuevo usuario
   createUser(user: IUser): Observable<IUser> {
@@ -35,13 +38,12 @@ export class UserService {
     return this.httpClient.put<IUser>(`${this.baseUrl}/${id}`, user);
   }
   //Eliminar un usuario
-  deleteUser(id: number): Observable<any> {
+  deleteUser(id: string): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
 
-  deleteUse(userId: string): Observable<void> {
-    return this.httpClient.delete<void>(`${this.baseUrl}/${userId}`);
-  }
 
+
+  
   
 }
