@@ -16,9 +16,9 @@ export class UserService {
     return this.httpClient.get<IResponse>(this.baseUrl);
   }
 
-  getAllPromise(): Promise<IResponse> {
-    return lastValueFrom(this.httpClient.get<IResponse>(this.baseUrl));
-  }
+  // getAllPromise(): Promise<IResponse> {
+  //   return lastValueFrom(this.httpClient.get<IResponse>(this.baseUrl));
+  // }
 
   //Obtener un usuario por id
   getUserById(_id: string): Observable<IUser> {
@@ -31,13 +31,17 @@ export class UserService {
   }
 
   //actualizar
-  updateUser(id: number, user: any): Observable<any> {
-    return this.httpClient.put<any>(`${this.baseUrl}/${id}`, user);
+  updateUser(id: string, user: IUser): Observable<IUser> {
+    return this.httpClient.put<IUser>(`${this.baseUrl}/${id}`, user);
+  }
+  //Eliminar un usuario
+  deleteUser(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
 
- //Eliminar un usuario
- deleteUser(id: number): Observable<IUser>{
-  return this.httpClient.delete<any>(`${this.baseUrl}/${id}`);
+  deleteUse(userId: string): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/${userId}`);
+  }
 
- }
+  
 }
