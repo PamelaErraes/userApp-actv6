@@ -26,7 +26,7 @@
             </button>
 
             <!-- Borrar -->
-            <button class="d-flex flex-column btn btn-light align-items-center p-2" (click)="deleteUser(usuario.id)">
+            <button class="d-flex flex-column btn btn-light align-items-center p-2" (click)="deleteUser(usuario._id)">
               <i class="bi bi-trash" style="font-size: 1.5rem;"></i>
               <span style="font-size: 0.9rem;">Eliminar</span>
             </button> 
@@ -45,9 +45,18 @@
   </div>
   <!-- Paginación -->
   <nav class="mt-4">
-    <ul class="justify-content-center pagination">
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)">Anterior</a>
+      </li>
+      @for(page of pages; track page) {
+        <li class="page-item" [class.active]="currentPage === page">
+          <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+        </li>
+      }
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="changePage(currentPage + 1)">Siguiente</a>
+      </li>
     </ul>
   </nav>
+</div>
